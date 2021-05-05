@@ -12,12 +12,13 @@ import me.tungexplorer.james_generate_data.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//@Component
+@Component
 @Slf4j
 @RequiredArgsConstructor
 public class CreateKeyStoreTask implements CommandLineRunner {
@@ -38,6 +39,10 @@ public class CreateKeyStoreTask implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        execute();
+    }
+
+    public void execute() {
         UserList user = userClient.lists();
         var counter = new AtomicInteger(0);
         user.forEach(u -> createKeyStore(u, counter));

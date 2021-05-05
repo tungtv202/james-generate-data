@@ -7,13 +7,15 @@ import me.tungexplorer.james_generate_data.client.UserClient;
 import me.tungexplorer.james_generate_data.dto.UserCreateRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @RequiredArgsConstructor
 @Slf4j
 public class CreateUserTask implements CommandLineRunner {
     public static final int USER_COUNTER = 100;
     private final UserClient userClient;
+    private final CreateKeyStoreTask createKeyStoreTask;
 
     @Value("${user.defaultPassword}")
     private String password;
@@ -21,6 +23,7 @@ public class CreateUserTask implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         createUser();
+        createKeyStoreTask.execute();
     }
 
     public void createUser() {
