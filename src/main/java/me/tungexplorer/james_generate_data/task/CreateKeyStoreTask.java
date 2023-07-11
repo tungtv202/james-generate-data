@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+//@Component
 @Slf4j
 @RequiredArgsConstructor
 public class CreateKeyStoreTask implements CommandLineRunner {
